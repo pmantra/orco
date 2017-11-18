@@ -1,5 +1,8 @@
 package com.orco.utils;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.common.util.RandomValueStringGenerator;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
@@ -28,5 +31,11 @@ public class LoginUtil {
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         return salt;
+    }
+
+    public static String getFakePassword() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        RandomValueStringGenerator generator = new RandomValueStringGenerator();
+        return bCryptPasswordEncoder.encode(generator.generate());
     }
 }

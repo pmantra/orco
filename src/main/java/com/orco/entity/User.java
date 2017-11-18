@@ -1,5 +1,6 @@
 package com.orco.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Transient;
@@ -9,21 +10,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Users")
 public class User {
 
+    @JsonCreator
+    public User(){}
+
     @PersistenceConstructor
-    public User(String username, byte[] encryptedPassword, byte[] salt) {
+    public User(String username, String password) {
         this.username = username;
-        this.encryptedPassword = encryptedPassword;
-        this.salt = salt;
+        this.password = password;
     }
 
     @Id
     private String id;
     @Indexed
     private String username;
-    @Transient
     private String password;
-    private byte[] encryptedPassword;
-    private byte[] salt;
 
     public String getUsername() {
         return username;
@@ -39,22 +39,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public byte[] getEncryptedPassword() {
-        return encryptedPassword;
-    }
-
-    public void setEncryptedPassword(byte[] encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
-    }
-
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
     }
 
     public String getPassword() {
