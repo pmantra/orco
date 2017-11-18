@@ -2,7 +2,6 @@ package com.orco.service;
 
 import com.orco.dao.UserRepository;
 import com.orco.entity.User;
-import com.orco.utils.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -35,35 +35,12 @@ public class UserController {
             if(username == null || password == null) {
                 throw new ServletException("Please check username and password");
             }
-            boolean success = service.registerUser(username, password);
+            service.registerUser(username, password);
         } catch (Exception e) {
             //todo
             e.printStackTrace();
         }
     }
-
-    /*@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public String loginUser(@RequestBody Map<String,Map<String,String>> data) {
-        //TODO add pre conditions
-        try {
-            Map<String, String> loginData = data.get("data");
-            String username = loginData.get("username");
-            String password = loginData.get("password");
-            if(username == null || password == null) {
-                throw new ServletException("Invalid login! Please check username and password");
-            }
-            boolean success = service.login(loginData.get("username"), loginData.get("password"));
-            if(success) {
-                return Jwts.builder().setSubject(username).claim("roles", "user").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
-            }
-        } catch (Exception e) {
-            //todo
-            e.printStackTrace();
-        }
-        return null;
-    }*/
 
     @GetMapping(produces = "application/json", value = "/userInfo/{username}")
     @ResponseBody

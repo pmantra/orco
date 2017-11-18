@@ -16,20 +16,6 @@ public class OrcoApp {
 		SpringApplication.run(OrcoApp.class, args);
 	}
 
-	/*@Bean
-	public FilterRegistrationBean jwtFilter() {
-		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		registrationBean.setFilter(new JwtFilter());
-		registrationBean.addUrlPatterns("/secure/*");
-		return registrationBean;
-	}*/
-
-	/*@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-		return source;
-	}*/
 }
 
 
