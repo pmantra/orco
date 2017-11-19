@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.orco.security.SecurityConstants.HEADER_STRING;
-import static com.orco.security.SecurityConstants.SECRET;
-import static com.orco.security.SecurityConstants.TOKEN_PREFIX;
+import static com.orco.security.SecurityUtils.HEADER_STRING;
+import static com.orco.security.SecurityUtils.SECRET;
+import static com.orco.security.SecurityUtils.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

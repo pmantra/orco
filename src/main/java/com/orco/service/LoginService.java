@@ -2,25 +2,28 @@ package com.orco.service;
 
 import com.orco.dao.UserRepository;
 import com.orco.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static com.orco.security.SecurityUtils.BCRYPT_STRENGTH;
-
 @Service
 public class LoginService {
+
+    private static final Logger logger = LogManager.getLogger(LoginService.class);
 
     @Autowired
     private UserRepository userRepository;
 
-    public boolean registerUser(String username, String password) throws Exception {
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public void registerUser(String username, String password) throws Exception {
         if(getSavedUser(username) == null) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(BCRYPT_STRENGTH);
             saveUser(username,passwordEncoder.encode(password));
-            return true;
         } else{
-            //todo
+            logger.error("username already exists "+username);
             throw new Exception("Username already exists!");
         }
     }
